@@ -28,6 +28,15 @@ mvn javadoc:javadoc
 mvn exec:java -Dexec.mainClass=com.aerolineavs.tarifas.App
 ```
 
+## Ejecutar la GUI
+```bash
+mvn javafx:run
+```
+
+La GUI depende del caso de uso `EvaluarTarifaUseCase`; la implementación concreta
+se compone únicamente en `MainApp`, por lo que la vista y el controlador no
+dependen directamente del evaluador de reglas.
+
 ## Suposiciones para evitar ambigüedades
 - En la tarifa de estudiante, "al menos una vez al mes durante el curso" se interpreta como **9 viajes/año**.
 - La frecuencia anual informada se usa como número de viajes relevantes para cada regla.
