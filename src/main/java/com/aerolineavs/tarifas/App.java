@@ -52,12 +52,16 @@ public final class App {
             System.out.println("Tarifa recomendada: " + resultado.tarifa().getNombre());
             System.out.println("Descuento: " + resultado.tarifa().getDescuentoPorcentaje() + "%");
             System.out.println(resultado.suposiciones());
-        } catch (RuntimeException ex) {
+        } catch (NumberFormatException ex) {
+            System.err.println("Entrada numérica no válida: " + ex.getMessage());
+            System.exit(1);
+        } catch (IllegalArgumentException ex) {
             System.err.println("Entrada no válida. Revise formatos y valores permitidos:");
             System.err.println("- Tipo de viajero: MENOR, ESTUDIANTE_UNIVERSITARIO_DESPLAZADO, TRABAJADOR_JOVEN, GENERAL");
             System.err.println("- Clase preferida: TURISTA, BUSINESS");
             System.err.println("- Destino preferido: EUROPA, ASIA, AMERICA, OTRA");
             System.err.println("- Preguntas sí/no: responda 's' o 'n'");
+            System.err.println("Detalle: " + ex.getMessage());
             System.exit(1);
         }
     }

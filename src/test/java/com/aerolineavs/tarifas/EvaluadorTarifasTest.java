@@ -65,6 +65,16 @@ public class EvaluadorTarifasTest {
     }
 
     @Test
+    void debeAplicarConoceEuropaSinPeques() {
+        ClientePotencial cliente = new ClientePotencial(
+                35, 6, TipoViajero.GENERAL, ClaseVuelo.TURISTA,
+                RegionDestino.EUROPA, 25000, false, false
+        );
+
+        assertEquals(Tarifa.CONOCE_EUROPA, EvaluadorTarifas.evaluar(cliente).tarifa());
+    }
+
+    @Test
     void debeAplicarConoceMundoSinPeques() {
         ClientePotencial cliente = new ClientePotencial(
                 40, 7, TipoViajero.GENERAL, ClaseVuelo.BUSINESS,
@@ -117,5 +127,15 @@ public class EvaluadorTarifasTest {
         );
 
         assertEquals(Tarifa.CONOCE_EL_MUNDO, EvaluadorTarifas.evaluar(cliente).tarifa());
+    }
+
+    @Test
+    void debeAplicarConoceMundoConPequesCuandoIngresoEsMayorA35000() {
+        ClientePotencial cliente = new ClientePotencial(
+                30, 6, TipoViajero.GENERAL, ClaseVuelo.BUSINESS,
+                RegionDestino.AMERICA, 35000.01, true, false
+        );
+
+        assertEquals(Tarifa.CONOCE_EL_MUNDO_CON_TUS_PEQUES, EvaluadorTarifas.evaluar(cliente).tarifa());
     }
 }
