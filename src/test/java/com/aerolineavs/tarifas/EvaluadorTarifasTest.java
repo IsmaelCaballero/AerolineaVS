@@ -74,4 +74,29 @@ public class EvaluadorTarifasTest {
 
         assertEquals(Tarifa.SIN_TARIFA, EvaluadorTarifas.evaluar(cliente).tarifa());
     }
+
+    @Test
+    void debeExcluirLimitesDeIngresosParaConoceEuropa() {
+        ClientePotencial ingresoMinimo = new ClientePotencial(
+                30, 6, TipoViajero.GENERAL, ClaseVuelo.TURISTA,
+                RegionDestino.EUROPA, 20000, false, false
+        );
+        ClientePotencial ingresoMaximo = new ClientePotencial(
+                30, 6, TipoViajero.GENERAL, ClaseVuelo.TURISTA,
+                RegionDestino.EUROPA, 35000, false, false
+        );
+
+        assertEquals(Tarifa.SIN_TARIFA, EvaluadorTarifas.evaluar(ingresoMinimo).tarifa());
+        assertEquals(Tarifa.SIN_TARIFA, EvaluadorTarifas.evaluar(ingresoMaximo).tarifa());
+    }
+
+    @Test
+    void debeExcluirIngresoIgualA35000ParaConoceMundo() {
+        ClientePotencial cliente = new ClientePotencial(
+                30, 6, TipoViajero.GENERAL, ClaseVuelo.BUSINESS,
+                RegionDestino.AMERICA, 35000, false, false
+        );
+
+        assertEquals(Tarifa.SIN_TARIFA, EvaluadorTarifas.evaluar(cliente).tarifa());
+    }
 }
