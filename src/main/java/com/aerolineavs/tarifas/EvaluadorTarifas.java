@@ -19,7 +19,9 @@ public final class EvaluadorTarifas {
      * @return tarifa resultante junto con suposiciones
      */
     public static ResultadoTarifa evaluar(ClientePotencial cliente) {
-        if (cliente.edad() < 18 && cliente.vuelosAnuales() >= 6) {
+        if (cliente.edad() < 18
+                && cliente.tipoViajero() == TipoViajero.MENOR
+                && cliente.vuelosAnuales() >= 6) {
             return new ResultadoTarifa(Tarifa.PAJARILLO, SUPOSICIONES);
         }
 

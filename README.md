@@ -1,5 +1,5 @@
 # AerolineaVS
-Proyecto Aerolínea con Visual Studio Code + Maven + Github.
+Proyecto Aerolínea con Visual Studio Code + Maven + GitHub.
 
 ## Requisitos implementados
 - CLI en Java para recomendar la tarifa más adecuada según reglas de negocio.

@@ -16,6 +16,15 @@ public class EvaluadorTarifasTest {
     }
 
     @Test
+    void noDebeAplicarPajarilloSiTipoNoEsMenor() {
+        ClientePotencial cliente = new ClientePotencial(
+                17, 6, TipoViajero.GENERAL, ClaseVuelo.TURISTA, RegionDestino.OTRA, 0, false, true
+        );
+
+        assertEquals(Tarifa.SIN_TARIFA, EvaluadorTarifas.evaluar(cliente).tarifa());
+    }
+
+    @Test
     void debeAplicarGorrionAEstudianteEntre18y25() {
         ClientePotencial cliente = new ClientePotencial(
                 21, 9, TipoViajero.ESTUDIANTE_UNIVERSITARIO_DESPLAZADO, ClaseVuelo.TURISTA,
