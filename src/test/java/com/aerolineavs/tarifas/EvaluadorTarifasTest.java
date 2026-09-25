@@ -99,4 +99,14 @@ public class EvaluadorTarifasTest {
 
         assertEquals(Tarifa.SIN_TARIFA, EvaluadorTarifas.evaluar(cliente).tarifa());
     }
+
+    @Test
+    void debeIncluirIngresoMayorA35000ParaConoceMundo() {
+        ClientePotencial cliente = new ClientePotencial(
+                30, 6, TipoViajero.GENERAL, ClaseVuelo.BUSINESS,
+                RegionDestino.AMERICA, 35000.01, false, false
+        );
+
+        assertEquals(Tarifa.CONOCE_EL_MUNDO, EvaluadorTarifas.evaluar(cliente).tarifa());
+    }
 }
